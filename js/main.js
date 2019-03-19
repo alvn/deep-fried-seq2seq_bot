@@ -7,6 +7,11 @@ import targetWord2idx from './mappings/target-word2idx';
 import targetIdx2word from './mappings/target-idx2word';
 
 /**
+ * Defining Blotter variables
+**/
+
+
+/**
  * Main application to start on window load
  */
 class Main {
@@ -23,7 +28,7 @@ class Main {
         evt.preventDefault();
         if (evt.keyCode === 13) {
             this.sendChat();
-        } 
+        }
     }
     this.chatContent = [];
     this.temperature = 0;
@@ -167,6 +172,28 @@ class Main {
     const bubble = document.createElement('div');
     bubble.className = 'conversation__bubble';
     bubble.textContent = user == 'BOT' ? this.applyOutputRegex(text) : text;
+
+
+    console.log(bubble.textContent);
+    let deepfry = new Blotter.Text(bubble.textContent,{  family : "'EB Garamond', serif",
+    size : 27,
+    fill : "#171717",
+    paddingLeft : 40,
+    paddingRight : 40});
+
+    // Define blotter material
+    let material = new Blotter.LiquidDistortMaterial();
+
+    // Play with the value for uSpeed. Lower values slow
+    // down animation, while higher values speed it up. At
+    // a speed of 0.0, animation is stopped entirely.
+    material.uniforms.uSpeed.value = 0.25;
+
+    console.log(Blotter.Text);
+    let blotter = new Blotter(material, {texts: deepfry});
+    let scope = blotter.forText(deepfry);
+    bubble.textContent = '';
+    scope.appendTo(bubble);
     row.appendChild(bubble);
     this.conversationEle.appendChild(row);
     this.conversationEle.scrollTop = this.conversationEle.scrollHeight;

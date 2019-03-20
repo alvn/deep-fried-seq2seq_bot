@@ -38,6 +38,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
+ * Defining Blotter variables
+**/
+
+/**
  * Main application to start on window load
  */
 var Main = function () {
@@ -242,6 +246,27 @@ var Main = function () {
             var bubble = document.createElement('div');
             bubble.className = 'conversation__bubble';
             bubble.textContent = user == 'BOT' ? this.applyOutputRegex(text) : text;
+
+            console.log(bubble.textContent);
+            var deepfry = new Blotter.Text(bubble.textContent, { family: "'EB Garamond', serif",
+                size: 27,
+                fill: "#171717",
+                paddingLeft: 40,
+                paddingRight: 40 });
+
+            // Define blotter material
+            var material = new Blotter.LiquidDistortMaterial();
+
+            // Play with the value for uSpeed. Lower values slow
+            // down animation, while higher values speed it up. At
+            // a speed of 0.0, animation is stopped entirely.
+            material.uniforms.uSpeed.value = 0.25;
+
+            console.log(Blotter.Text);
+            var blotter = new Blotter(material, { texts: deepfry });
+            var scope = blotter.forText(deepfry);
+            bubble.textContent = '';
+            scope.appendTo(bubble);
             row.appendChild(bubble);
             this.conversationEle.appendChild(row);
             this.conversationEle.scrollTop = this.conversationEle.scrollHeight;

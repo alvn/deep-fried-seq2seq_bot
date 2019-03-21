@@ -12,7 +12,8 @@ html {
 }
 
 body {
-  background: #eee;
+  background: url('../resources/bg.png'), #eee ;
+  background-size: cover;
   font-family: Lato, Helvetica, sans-serif;
   margin: 0;
 }
@@ -47,8 +48,8 @@ body {
 
 main {
   box-sizing: border-box;
-  height: calc(100vh - #{$header-height} - #{$footer-height});
-  padding: 20px 0;
+  height: calc(100vh - #{$footer-height});
+  padding: 100px 0;
 }
 
 footer {
@@ -69,8 +70,10 @@ footer {
 }
 
 .chat {
-  background: #fff;
-  border-radius: 2px;
+  background: url('../resources/chat-bg.jpg') #fff;
+  background-size:300px;
+  background-repeat: repeat;
+  border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   height: 100%;

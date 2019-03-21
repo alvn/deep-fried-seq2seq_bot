@@ -247,9 +247,10 @@ var Main = function () {
             bubble.className = 'conversation__bubble';
             bubble.textContent = user == 'BOT' ? this.applyOutputRegex(text) : text;
 
+            var fontSize = Math.random() * (27 - 18) + 18;
             console.log(bubble.textContent);
             var deepfry = new Blotter.Text(bubble.textContent, { family: "'EB Garamond', serif",
-                size: 27,
+                size: fontSize,
                 fill: "#171717",
                 paddingLeft: 40,
                 paddingRight: 40 });
@@ -257,10 +258,12 @@ var Main = function () {
             // Define blotter material
             var material = new Blotter.LiquidDistortMaterial();
 
+            //randomize animation value
+            var speed = (Math.random() * (0.2500 - 0.0200) + 0.0200).toFixed(4);
             // Play with the value for uSpeed. Lower values slow
             // down animation, while higher values speed it up. At
             // a speed of 0.0, animation is stopped entirely.
-            material.uniforms.uSpeed.value = 0.25;
+            material.uniforms.uSpeed.value = speed;
 
             console.log(Blotter.Text);
             var blotter = new Blotter(material, { texts: deepfry });
